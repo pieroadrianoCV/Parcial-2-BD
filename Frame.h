@@ -1,12 +1,14 @@
 #ifndef FRAME_H
 #define FRAME_H
+#include "./Pagina.cpp"
 
-class Frame
+class Frame 
 {
-private:
-    /* data */
 public:
-    Frame(/* args */);
+    Pagina paginaEnFrame;
+    int limiteBytesCapacidad;
+public:
+    Frame();
     ~Frame();
 };
 
