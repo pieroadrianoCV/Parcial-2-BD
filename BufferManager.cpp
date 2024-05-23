@@ -15,6 +15,18 @@ void BufferManager::crearBufferPoolSegunNumFrames(int numFrames)
     this->pageTable.columnaDirtyIdSize = 0;
     this->pageTable.columnaPinCountSize = 0;
     this->pageTable.columnaLastUsedSize = 0;
+
+    cout<<"inicializando pageTable"<<endl;
+    this->pageTable.pageTableLRU.resize(numFrames);
+
+    for (int i = 0; i < numFrames; i++)
+    {
+        for (int j = 0; j < this->pageTable.numColumnasEnPageTable; j++)
+        {
+            this->pageTable.pageTableLRU[i].resize(this->pageTable.numColumnasEnPageTable);
+        }
+    }
+    
 }
 
 void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
@@ -38,6 +50,7 @@ void BufferManager::obtenerUnaPagina(int numPagina)
         cout<<"---- Insertando Datos de pagina a ser insertada en Page table..."<<endl;
         for (int i = 0; i < this->pageTable.numColumnasEnPageTable; i++)
         {
+            cout<<i<<endl;
             if (i==0)
             {
                 this->pageTable.pageTableLRU[0][i]=numPagina;
@@ -47,6 +60,11 @@ void BufferManager::obtenerUnaPagina(int numPagina)
             {
                 this->pageTable.pageTableLRU[0][i]=1;
                 cout<<"frame id:0 - Pin Count establecida: "<<numPagina<<endl;
+            }
+            else if (i==3)
+            {
+                this->pageTable.pageTableLRU[0][i]=1;
+                cout<<"frame id:0 - Last Used establecida: "<<numPagina<<endl;
             }
             
             else
