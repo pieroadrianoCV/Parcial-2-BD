@@ -29,3 +29,12 @@ void Pagina::recogerRegistros(int numPagina)
     }
     
 }
+
+void Pagina::mostrarContenidoDePagina()
+{
+    cout<<"-------------------PAgina: mostrarContenidoDePagina()-------------------"<<endl;
+    for (int i = 0; i < this->vectorRegistrosEnPagina.size(); i++) {
+        cout << this->vectorRegistrosEnPagina[i] << endl;
+    }
+    
+}

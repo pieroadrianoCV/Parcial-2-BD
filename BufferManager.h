@@ -20,6 +20,11 @@ class BufferManager
         void crearBufferPoolSegunNumFrames(int numFrames);
         void establecerLimiteDeFrames(int pesoBytesBLoque);
         void obtenerUnaPagina(int numPagina);
+        void mostrarUnaPagina(int numPagina);
+        void mostrarPageTAble();
+
+        void dejarDeUsarUnaPagina(int numPagina);
+
 
 };
 

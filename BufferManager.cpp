@@ -40,6 +40,21 @@ void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
     
 }
 
+
+void BufferManager::obtenerUnaPagina(int numPagina)
+{
+    this->pageTable.aplicarLRU(numPagina);
+
+    cout<<"Datos cambiados segun LRU en Page Table"<<endl;
+    cout<<"Aplicando cambios en Buffer Pool segun Page Table"<<endl;
+    cout<<"Mandando a agregar la nueva Pagina"<<endl;
+    int numFrameDePagina=this->pageTable.getNumFrameDeUnaPagina(numPagina);
+
+    this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
+}
+
+/*
+
 void BufferManager::obtenerUnaPagina(int numPagina)
 {
     cout<<".-----------------------obtenerUnaPagina() ----------------------"<<endl;
@@ -50,7 +65,6 @@ void BufferManager::obtenerUnaPagina(int numPagina)
         cout<<"---- Insertando Datos de pagina a ser insertada en Page table..."<<endl;
         for (int i = 0; i < this->pageTable.numColumnasEnPageTable; i++)
         {
-            cout<<i<<endl;
             if (i==0)
             {
                 this->pageTable.pageTableLRU[0][i]=numPagina;
@@ -63,7 +77,7 @@ void BufferManager::obtenerUnaPagina(int numPagina)
             }
             else if (i==3)
             {
-                this->pageTable.pageTableLRU[0][i]=1;
+                this->pageTable.pageTableLRU[0][i]=this->pageTable.pageTableLRU[0][i]+1;
                 cout<<"frame id:0 - Last Used establecida: "<<numPagina<<endl;
             }
             
@@ -83,16 +97,49 @@ void BufferManager::obtenerUnaPagina(int numPagina)
         
         cout<<"Mostrando Page Table..."<<endl;
         this->pageTable.mostrarPageTableLRU();
-        //darle un page id
-        //mandarlo a un frame
-        //guardar cambios en page table
-        // ingresa dato a page table (id page, dirty y lo demás)
-        // ingresa a un frame(frame id) del buffer pool
+
+        cout<<"Aumenta tamaño de pageTable.columnPageIdSize"<<endl;
+        this->pageTable.columnPageIdSize++;
     }
     else
     {
         cout<<"SI tiene páginas insertada"<<endl;
+        //this->pageTable.
+        
     }
     
 }
+
+*/
+void BufferManager::mostrarUnaPagina(int numPagina)
+{
+    cout<<"----------------------- mostrarUnaPagina -------------------------"<<endl;
+    if (this->pageTable.verificarExistenciaDePagina(numPagina)==true)
+    {
+        cout<<"Existencia de pàgina verificada Verificada"<<endl;
+        cout<<"MOstrandoDichaPAgina"<<endl;
+        int numFrameDePagina=this->pageTable.getNumFrameDeUnaPagina(numPagina);
+        this->bufferPool.vectorFramesBufferPool[numFrameDePagina].paginaEnFrame.mostrarContenidoDePagina();
+        // despuès de mostrar termina su 
+    }
+    else
+    {
+        cout<<"NO EXISTE DICHA PÀGINA"<<endl;
+        cout<<"Procediendo a pedido de nueva pàgina..."<<endl;
+        //SI todo en page tabl esta ocupado, APLICA LRU
+    }
     
+    
+}
+
+void BufferManager::mostrarPageTAble()
+{
+    cout<<"--------------------Bloque mostrarPageTAble() -------------------------"<<endl;
+    this->pageTable.mostrarPageTableLRU();
+}
+
+
+void BufferManager::dejarDeUsarUnaPagina(int numPagina)
+{
+    this->pageTable.descontarPinCountApagina(numPagina);
+}

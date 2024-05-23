@@ -10,6 +10,8 @@ public:
 public:
     Frame();
     ~Frame();
+
+    void leerDatosEnPaginaDeFrame(int numPagina);
 };
 
 

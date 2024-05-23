@@ -17,6 +17,8 @@ class BufferPool
         //Funciones
         BufferPool(/* args */);
         ~BufferPool();
+
+        void agregarNuevaPaginaBufferPool(int numFrame, int numPagina);
 };
 
 #endif
