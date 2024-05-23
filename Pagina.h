@@ -11,11 +11,12 @@ using namespace std;
 class Pagina
 {
 public:
-    vector<string> vectoregistrosEnPagina;
+    vector<string> vectorRegistrosEnPagina;
 public:
     Pagina(/* args */);
     ~Pagina();
     void recogerRegistros(int numPagina);
+    void mostrarContenidoDePagina();
 };
 
 #endif

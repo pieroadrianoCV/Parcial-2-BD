@@ -24,6 +24,8 @@ public:
     string columnaLastUsed = "LastUsed";
     int columnaLastUsedSize;
 
+    int numColumnasEnPageTable=4;//aparte de frameID
+
     vector<vector<int>> pageTableLRU;
 public:
     PageTable(/* args */);

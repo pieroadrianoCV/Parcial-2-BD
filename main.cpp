@@ -20,8 +20,8 @@ int main()
 
     //solicitar 1 página
     int numPagina;
-    cout<<"Ingrese el numero de pagina que desa (Modo Prueba 1 - 6): "<<endl;
-    cin>>numPagina;
+    cout << "Ingrese el numero de pagina que desea OBTENER (Modo Prueba 1 - 6): "<<endl;
+    cin >> numPagina;
     
     bufferManagerPrincipal.obtenerUnaPagina(numPagina);
 

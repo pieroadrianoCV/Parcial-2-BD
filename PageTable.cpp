@@ -7,3 +7,8 @@ PageTable::PageTable(/* args */)
 PageTable::~PageTable()
 {
 }
+
+void mostrarPageTableLRU()
+{
+    
+}

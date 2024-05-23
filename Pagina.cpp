@@ -7,7 +7,7 @@ void Pagina::recogerRegistros(int numPagina)
 {
     string numPaginaString = to_string(numPagina);
     string nameBloque = "Bloque";
-    string rutaCompleta = "./Bloques/" + nameBloque+numPaginaString;
+    string rutaCompleta = "./Bloques/" + nameBloque+numPaginaString+".txt";
     ifstream fileReadBloques(rutaCompleta);
     if (!fileReadBloques.is_open())
     {
@@ -15,15 +15,14 @@ void Pagina::recogerRegistros(int numPagina)
     }
     else
     {
-        cout << "EXITO ROTUNDO EN PROCESO DE ADMISION" + rutaCompleta << endl;
+        cout << "EXITO t5656: SI se pudo abrir" + rutaCompleta << endl;
         string lineaDeRegistroAux;
 
         //mientras haya lineas
-        int i = 0;
+        this->vectorRegistrosEnPagina.clear();
         while (getline(fileReadBloques,lineaDeRegistroAux))
         {
-            this->vectorRegistrosEnPagina[i] = lineaDeRegistroAux;
-            i++;
+            this->vectorRegistrosEnPagina.push_back(lineaDeRegistroAux);
         }
         cout<<"Recogida de datos terminado"<<endl;
         
