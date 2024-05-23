@@ -10,10 +10,11 @@ using namespace std;
 class BufferPool 
 {
     public:
-        int pesoBytesBloque;
-        int numFrames;
+        //atributos
+        int limiteXFrame;
         vector<Frame> vectorFramesBufferPool;
     public:
+        //Funciones
         BufferPool(/* args */);
         ~BufferPool();
 };

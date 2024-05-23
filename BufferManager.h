@@ -2,15 +2,24 @@
 #define BUFFERMANAGER_H
 
 #include "./BufferPool.cpp"
+#include "./PageTable.cpp"
+
+#include <vector>
+
 using namespace std;
 
 class BufferManager
 {
     public:
+        //Atributos
         BufferPool bufferPool;
-        BufferManager(/* args */);
+        PageTable pageTable;
+    public:
+        BufferManager();
         ~BufferManager();
-        void crearBufferPool(int numFrames);
+        void crearBufferPoolSegunNumFrames(int numFrames);
+        void establecerLimiteDeFrames(int pesoBytesBLoque);
+        void obtenerUnaPagina(int numPagina);
 
 };
 
