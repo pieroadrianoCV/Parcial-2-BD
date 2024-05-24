@@ -50,7 +50,7 @@ public:
     void analizarPageTableParaAgregarPagina(int numPagina);
     bool verificarFrameLlenos();
 
-    void actualizarInformacionDePaginaEliminada(int numPagina);
+    void actualizarInformacionDePaginaEliminada(int numPaginaActualizar, int nuevaPaginaActualizar);
 
 };
 

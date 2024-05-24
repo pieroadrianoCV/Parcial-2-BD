@@ -55,7 +55,7 @@ void BufferManager::obtenerUnaPagina(int numPagina)
     //     //eliminarPageConEscrituraEnDisco
     //     cout<<"eliminarPageConEscrituraEnDisco"<<endl;
     // } 
-
+    this->pageTable.mostrarPageTableLRU();
     // cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ajskdhkashdkjashdkj"<<endl;
     this->pageTable.descontarPinCountApagina(numPagina);
 
