@@ -45,10 +45,12 @@ public:
     void actualizarInfoDePageTableSolictandoNuevaPagina(int numPaginaActualizar, int numFilaFrameId);
     void aumentarLastUsedDeTodasLasDemasPaginas(int numFrameAignorar);
 
-    void aplicarLRU(int numPagina);
+    void aplicarLRU(int numPagina, int numFrameAignorar, bool &eliminarPageSinEscrituraEnDisco, bool &eliminarPageConEscrituraEnDisco);
 
     void analizarPageTableParaAgregarPagina(int numPagina);
     bool verificarFrameLlenos();
+
+    void actualizarInformacionDePaginaEliminada(int numPagina);
 
 };
 

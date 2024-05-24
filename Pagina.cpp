@@ -1,4 +1,5 @@
 #include "./Pagina.h"
+
 Pagina::Pagina(/* args */){}
 
 Pagina::~Pagina(){}
@@ -7,11 +8,11 @@ void Pagina::recogerRegistros(int numPagina)
 {
     string numPaginaString = to_string(numPagina);
     string nameBloque = "Bloque";
-    string rutaCompleta = "./Bloques/" + nameBloque+numPaginaString+".txt";
+    string rutaCompleta = "./Bloques/" + nameBloque+numPaginaString + ".txt";
     ifstream fileReadBloques(rutaCompleta);
     if (!fileReadBloques.is_open())
     {
-        cout << "Error t5656: no se pudo abrir "+ rutaCompleta << endl;
+        cout << "Error t5656: no se pudo abrir " + rutaCompleta << endl;
     }
     else
     {
@@ -32,7 +33,7 @@ void Pagina::recogerRegistros(int numPagina)
 
 void Pagina::mostrarContenidoDePagina()
 {
-    cout<<"-------------------PAgina: mostrarContenidoDePagina()-------------------"<<endl;
+    cout << "-------------------PAgina: mostrarContenidoDePagina()-------------------" << endl;
     for (int i = 0; i < this->vectorRegistrosEnPagina.size(); i++) {
         cout << this->vectorRegistrosEnPagina[i] << endl;
     }
