@@ -43,29 +43,48 @@ void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
 
 void BufferManager::obtenerUnaPagina(int numPagina)
 {
-    this->pageTable.analizarPageTableParaAgregarPagina(numPagina);
-    // cout<<"gaaaaaaaaaaaaaaaaaaaaaaaaaa"<<endl;
-    // if (resultadosParaEliminacionYCambios=="eliminarPageSinEscrituraEnDisco")
-    // {
-    //     //eliminarPageSinEscrituraEnDisco
-    //     cout<<"eliminarPageSinEscrituraEnDisco"<<endl;
-    // }
-    // else
-    // {
-    //     //eliminarPageConEscrituraEnDisco
-    //     cout<<"eliminarPageConEscrituraEnDisco"<<endl;
-    // } 
-    this->pageTable.mostrarPageTableLRU();
-    // cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ajskdhkashdkjashdkj"<<endl;
-    this->pageTable.descontarPinCountApagina(numPagina);
+    string resultadosParaEliminacionYCambios=this->pageTable.analizarPageTableParaAgregarPagina(numPagina);
+    if (resultadosParaEliminacionYCambios=="eliminarPageSinEscrituraEnDisco")
+    {
+        //eliminarPageSinEscrituraEnDisco
+        cout<<">>>>>>>> eliminarPageSinEscrituraEnDisco"<<endl;
+        cout << "Datos cambiados segun LRU en Page Table" << endl;
+        this->pageTable.mostrarPageTableLRU();
+        this->pageTable.descontarPinCountApagina(numPagina);
 
-    cout << "Datos cambiados segun LRU en Page Table" << endl;
-    cout << "Aplicando cambios en Buffer Pool segun Page Table" << endl;
-    cout << "Mandando a agregar la nueva Pagina" << endl;
 
-    int numFrameDePagina = this->pageTable.getNumFrameDeUnaPagina(numPagina);
+        cout << "Aplicando cambios en Buffer Pool segun Page Table" << endl;
+        cout << "Mandando a agregar la nueva Pagina" << endl;
 
-    this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
+        int numFrameDePagina = this->pageTable.getNumFrameDeUnaPagina(numPagina);
+
+        this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
+        this->bufferPool.mostrarFramePagina(numPagina);
+    }
+    else if(resultadosParaEliminacionYCambios=="eliminarPageConEscrituraEnDisco")
+    {
+        //eliminarPageConEscrituraEnDisco
+        cout<<">>>>>>>> eliminarPageConEscrituraEnDisco"<<endl;
+        cout << "Datos cambiados segun LRU en Page Table" << endl;
+        this->pageTable.mostrarPageTableLRU();
+        this->pageTable.descontarPinCountApagina(numPagina);
+    }
+    else
+    {
+        cout<<">>>>>>>> normal NO hay eliminacion"<<endl;
+        this->pageTable.mostrarPageTableLRU();
+        this->pageTable.descontarPinCountApagina(numPagina);
+
+        cout << "Aplicando cambios en Buffer Pool segun Page Table" << endl;
+        cout << "Mandando a agregar la nueva Pagina" << endl;
+
+        int numFrameDePagina = this->pageTable.getNumFrameDeUnaPagina(numPagina);
+
+        this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
+        this->bufferPool.mostrarFramePagina(numPagina);
+
+    }
+
 }
 
 /*

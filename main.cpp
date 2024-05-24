@@ -26,13 +26,14 @@ void menu()
     int opcion = 0;
     int numPagina;
     //solicitar 1 página
-    while (opcion!=4)
+    while (opcion!=5)
     {
         cout << "Menú Principal Programa Buffer MAnager:" << endl;
         cout << "1. Crear Buffer Pool" << endl;
         cout << "2. Obtener Una Página" << endl;
         cout << "3. Mostrar Page Table" << endl;
-        cout << "4. SALIR del programa principal" << endl;
+        cout << "4. Obtener Una Página" << endl;
+        cout << "5. SALIR del programa principal" << endl;
         cout << ">>>Ingrese el numero de opcion" << endl;
         cin >> opcion;
 
@@ -49,6 +50,11 @@ void menu()
 
         case 3:
             bufferManagerPrincipal.mostrarPageTAble();
+            break;
+        case 4:
+            cout<<"Ingrese el numero de la pagina a mostrale"<<endl;
+            cin>>numPagina;
+            bufferManagerPrincipal.bufferPool.mostrarFramePagina(numPagina);
             break;
 
         default:

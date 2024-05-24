@@ -19,6 +19,7 @@ class BufferPool
         ~BufferPool();
 
         void agregarNuevaPaginaBufferPool(int numFrame, int numPagina);
+        void mostrarFramePagina(int numPagina);
 };
 
 #endif

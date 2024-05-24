@@ -315,7 +315,7 @@ void PageTable::aplicarLRU(int numPagina, int numFrameAignorar, bool &eliminarPa
     
 }
 
-void PageTable::analizarPageTableParaAgregarPagina(int numPagina)
+string PageTable::analizarPageTableParaAgregarPagina(int numPagina)
 {
     cout << "---------------------analizarPageTableParaAgregarPagina()----------------" << endl;
     if (this->verificarExistenciaDePagina(numPagina) == true)
@@ -323,6 +323,8 @@ void PageTable::analizarPageTableParaAgregarPagina(int numPagina)
         cout << "Pagina ya encontrada" << endl;
         int numFrame = this->getNumFrameDeUnaPagina(numPagina);
         this->actualizarInfoDePageTableSolictandoNuevaPagina(numPagina, numFrame);
+        string normal="normal";
+        return normal;
     }
     else
     {
@@ -335,11 +337,13 @@ void PageTable::analizarPageTableParaAgregarPagina(int numPagina)
             aplicarLRU(numPagina,INT16_MAX, eliminarPageSinEscrituraEnDisco, eliminarPageConEscrituraEnDisco);
             if (eliminarPageSinEscrituraEnDisco==true)
             {
-                cout<< "eliminarPageSinEscrituraEnDisco"<<endl;
+                string primerBool="eliminarPageSinEscrituraEnDisco";
+                return primerBool;
             }
             else if(eliminarPageConEscrituraEnDisco==true)
             {
-                cout<< "eliminarPageConEscrituraEnDisco"<<endl;
+                string segundoBool="eliminarPageConEscrituraEnDisco";
+                return segundoBool;
             }
             
             
@@ -349,6 +353,8 @@ void PageTable::analizarPageTableParaAgregarPagina(int numPagina)
             cout<<"/////////Frames no llenos (Aun hay space)"<<endl;
             int numFrame = this->getNumFrameDeUnaPagina(numPagina);
             this->actualizarInfoDePageTableSolictandoNuevaPagina(numPagina, numFrame);
+            string normal="normal";
+            return normal;
         }
 
     }

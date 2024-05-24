@@ -47,7 +47,7 @@ public:
 
     void aplicarLRU(int numPagina, int numFrameAignorar, bool &eliminarPageSinEscrituraEnDisco, bool &eliminarPageConEscrituraEnDisco);
 
-    void analizarPageTableParaAgregarPagina(int numPagina);
+    string analizarPageTableParaAgregarPagina(int numPagina);
     bool verificarFrameLlenos();
 
     void actualizarInformacionDePaginaEliminada(int numPaginaActualizar, int nuevaPaginaActualizar);
