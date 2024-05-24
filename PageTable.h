@@ -30,6 +30,7 @@ public:
 public:
     PageTable(/* args */);
     ~PageTable();
+
     void mostrarPageTableLRU();
     bool verificarExistenciaDePagina(int numPagina);
     int getNumFrameDeUnaPagina(int numPagina);
@@ -39,12 +40,15 @@ public:
 
     void cambiarDirtyBitDePagina(int numPagina);
 
-    void descontarLastUsedDePagina(int numPagina);
+    void renovarLastUsedDePagina(int numPagina);
     void aumentarLastUsedDePagina(int numPagina);
-
-    void actualizarDataAlSolicitarPagina(int numPaginaActualizar, int numFilaFrameId);
+    void actualizarInfoDePageTableSolictandoNuevaPagina(int numPaginaActualizar, int numFilaFrameId);
+    void aumentarLastUsedDeTodasLasDemasPaginas(int numFrameAignorar);
 
     void aplicarLRU(int numPagina);
+
+    void analizarPageTableParaAgregarPagina(int numPagina);
+    bool verificarFrameLlenos();
 
 };
 

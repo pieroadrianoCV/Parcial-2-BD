@@ -43,8 +43,7 @@ void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
 
 void BufferManager::obtenerUnaPagina(int numPagina)
 {
-    this->pageTable.aplicarLRU(numPagina);
-
+    this->pageTable.analizarPageTableParaAgregarPagina(numPagina);
     cout<<"Datos cambiados segun LRU en Page Table"<<endl;
     cout<<"Aplicando cambios en Buffer Pool segun Page Table"<<endl;
     cout<<"Mandando a agregar la nueva Pagina"<<endl;
