@@ -17,6 +17,7 @@ public:
     ~Pagina();
     void recogerRegistros(int numPagina);
     void mostrarContenidoDePagina();
+    bool verificarPaginaVacia();
 };
 
 #endif

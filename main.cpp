@@ -32,7 +32,7 @@ void menu()
         cout << "1. Crear Buffer Pool" << endl;
         cout << "2. Obtener Una Página" << endl;
         cout << "3. Mostrar Page Table" << endl;
-        cout << "4. Obtener Una Página" << endl;
+        cout << "4. Mostrar Una Página" << endl;
         cout << "5. SALIR del programa principal" << endl;
         cout << ">>>Ingrese el numero de opcion" << endl;
         cin >> opcion;

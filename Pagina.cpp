@@ -39,3 +39,16 @@ void Pagina::mostrarContenidoDePagina()
     }
     
 }
+
+
+bool Pagina::verificarPaginaVacia()
+{
+    if (this->vectorRegistrosEnPagina.empty())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }    
+}

@@ -56,10 +56,10 @@ void BufferManager::obtenerUnaPagina(int numPagina)
         cout << "Aplicando cambios en Buffer Pool segun Page Table" << endl;
         cout << "Mandando a agregar la nueva Pagina" << endl;
 
-        int numFrameDePagina = this->pageTable.getNumFrameDeUnaPagina(numPagina);
+        // int numFrameDePagina = this->pageTable.getNumFrameDeUnaPagina(numPagina);
 
-        this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
-        this->bufferPool.mostrarFramePagina(numPagina);
+        // this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
+        // this->bufferPool.mostrarFramePagina(numPagina);
     }
     else if(resultadosParaEliminacionYCambios=="eliminarPageConEscrituraEnDisco")
     {
