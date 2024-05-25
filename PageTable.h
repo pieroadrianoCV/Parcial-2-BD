@@ -9,21 +9,22 @@ using namespace std;
 class PageTable
 {
 public:
-    string columnaFrameId = "FrameId";
+    string nameColumnaFrameId = "FrameId";
     int columnaFrameIdSize;
 
-    string columnaPageId = "PageId";
+    string nameColumnaPageId = "PageId";
     int columnPageIdSize;
 
-    string columnaDirttyId = "DirtyId";
+    string nameColumnaDirttyId = "DirtyId";
     int columnaDirtyIdSize;
 
-    string columnaPinCount = "PinCount";
+    string nameColumnaPinCount = "PinCount";
     int columnaPinCountSize;
 
-    string columnaLastUsed = "LastUsed";
+    string nameColumnaLastUsed = "LastUsed";
     int columnaLastUsedSize;
 
+    
     int numColumnasEnPageTable=4;//aparte de frameID
 
     vector<vector<int>> pageTableLRU;
