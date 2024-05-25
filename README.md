@@ -1,2 +1,2 @@
 # BufferManager
-Implementación Buffer Manager - Base de Datos II
+Implementación Buffer Manager - Base de Datos II.
