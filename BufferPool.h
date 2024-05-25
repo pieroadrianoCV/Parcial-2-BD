@@ -11,7 +11,7 @@ class BufferPool
 {
     public:
         //atributos
-        int limiteDeCadaFrame;
+        int capacidadDeCadaFrame;
         vector<Frame> vectorFramesBufferPool;
     public:
         //Funciones

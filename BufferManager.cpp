@@ -17,13 +17,13 @@ void BufferManager::crearBufferPoolSegunNumFrames(int numFrames)
     this->pageTable.columnaLastUsedSize = 0;
 
     cout<<"inicializando pageTable"<<endl;
-    this->pageTable.pageTableLRU.resize(numFrames);
+    this->pageTable.matrizPageTableLRU.resize(numFrames);
 
     for (int i = 0; i < numFrames; i++)
     {
         for (int j = 0; j < this->pageTable.numColumnasEnPageTable; j++)
         {
-            this->pageTable.pageTableLRU[i].resize(this->pageTable.numColumnasEnPageTable);
+            this->pageTable.matrizPageTableLRU[i].resize(this->pageTable.numColumnasEnPageTable);
         }
     }
     
@@ -31,11 +31,11 @@ void BufferManager::crearBufferPoolSegunNumFrames(int numFrames)
 
 void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
 {
-    this->bufferPool.limiteDeCadaFrame = pesoBytesBLoque;
+    this->bufferPool.capacidadDeCadaFrame = pesoBytesBLoque;
 
     for (int i = 0; i < this->bufferPool.vectorFramesBufferPool.size(); i++)
     {
-        this->bufferPool.vectorFramesBufferPool[i].limiteBytesCapacidad = pesoBytesBLoque;
+        this->bufferPool.vectorFramesBufferPool[i].capacidadBytesDeFrame = pesoBytesBLoque;
     }
     
 }
@@ -43,6 +43,7 @@ void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
 
 void BufferManager::obtenerUnaPagina(int numPagina)
 {
+    cout<<"----------------obtenerUnaPagina()-------------------"<<endl;
     string resultadosParaEliminacionYCambios=this->pageTable.analizarPageTableParaAgregarPagina(numPagina);
     if (resultadosParaEliminacionYCambios=="eliminarPageSinEscrituraEnDisco")
     {
@@ -69,17 +70,18 @@ void BufferManager::obtenerUnaPagina(int numPagina)
         this->pageTable.mostrarPageTableLRU();
         this->pageTable.descontarPinCountApagina(numPagina);
     }
-    else
+    else//Aun hay espacios en el frame
     {
         cout<<">>>>>>>> normal NO hay eliminacion"<<endl;
         this->pageTable.mostrarPageTableLRU();
-        this->pageTable.descontarPinCountApagina(numPagina);
+        //this->pageTable.descontarPinCountApagina(numPagina);
 
         cout << "Aplicando cambios en Buffer Pool segun Page Table" << endl;
         cout << "Mandando a agregar la nueva Pagina" << endl;
 
         int numFrameDePagina = this->pageTable.getNumFrameDeUnaPagina(numPagina);
 
+        cout<<"Ingresando Página al BufferPoll dentro vector de Frames...."<<endl;
         this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
         this->bufferPool.mostrarFramePagina(numPagina);
 
@@ -101,23 +103,23 @@ void BufferManager::obtenerUnaPagina(int numPagina)
         {
             if (i==0)
             {
-                this->pageTable.pageTableLRU[0][i]=numPagina;
+                this->pageTable.matrizPageTableLRU[0][i]=numPagina;
                 cout<<"frame id:0 - Page id establecida: "<<numPagina<<endl;
             }
             else if (i==2)
             {
-                this->pageTable.pageTableLRU[0][i]=1;
+                this->pageTable.matrizPageTableLRU[0][i]=1;
                 cout<<"frame id:0 - Pin Count establecida: "<<numPagina<<endl;
             }
             else if (i==3)
             {
-                this->pageTable.pageTableLRU[0][i]=this->pageTable.pageTableLRU[0][i]+1;
+                this->pageTable.matrizPageTableLRU[0][i]=this->pageTable.matrizPageTableLRU[0][i]+1;
                 cout<<"frame id:0 - Last Used establecida: "<<numPagina<<endl;
             }
             
             else
             {
-                this->pageTable.pageTableLRU[0][i]=0;
+                this->pageTable.matrizPageTableLRU[0][i]=0;
                 cout<<"frame id:0 - Dirty Bit establecida: "<<0<<endl;
                 cout<<"frame id:0 - Last used establecida: "<<0<<endl;
             }
