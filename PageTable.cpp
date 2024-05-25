@@ -10,7 +10,7 @@ PageTable::~PageTable()
 
 void PageTable::mostrarPageTableLRU()
 {
-    int numFilas = this->pageTableLRU.size();
+    int numFilas = this->matrizPageTableLRU.size();
     int numColumas = this->numColumnasEnPageTable;
     cout << "Frame id \t PageId \t DirtyBit \t Pin Count \t Last Used" << endl;
     for (int i = 0; i < numFilas; i++)
@@ -18,7 +18,7 @@ void PageTable::mostrarPageTableLRU()
         cout << i << "\t\t";
         for (int j = 0; j < numColumas; j++)
         {
-            cout << this->pageTableLRU[i][j] << "\t\t";
+            cout << this->matrizPageTableLRU[i][j] << "\t\t";
         }
         cout << endl;
     }
@@ -30,7 +30,7 @@ bool PageTable::verificarExistenciaDePagina(int numPagina)
     int j = 0;
     for (int i = 0; i < this->columnaFrameIdSize; i++)
     {
-        if (this->pageTableLRU[i][j] == numPagina)
+        if (this->matrizPageTableLRU[i][j] == numPagina)
         {
             cout << "PAG " + to_string(numPagina) + " SI existe" << endl;
             return true;
@@ -49,7 +49,7 @@ int PageTable::getNumFrameDeUnaPagina(int numPagina)
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j] == numPagina)
+            if (this->matrizPageTableLRU[i][j] == numPagina)
             {
                 cout << "PAgina hallada devolviendo numero de frame: " << endl;
                 return i;
@@ -62,9 +62,9 @@ int PageTable::getNumFrameDeUnaPagina(int numPagina)
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j])
+            if (this->matrizPageTableLRU[i][j])
             {
-                cout << "PAgina si tiene valor" << endl;
+                cout <<this->matrizPageTableLRU[i][j]<< "PAgina si tiene valor" << endl;
             }
             else
             {
@@ -84,14 +84,14 @@ void PageTable::descontarPinCountApagina(int numPagina)
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j] == numPagina)
+            if (this->matrizPageTableLRU[i][j] == numPagina)
             {
                 numFilaElegida = i;
             }
         }
         int numColumnaPinCount = 2; // 0,1,2,3
 
-        this->pageTableLRU[numFilaElegida][numColumnaPinCount] = this->pageTableLRU[numFilaElegida][numColumnaPinCount] - 1;
+        this->matrizPageTableLRU[numFilaElegida][numColumnaPinCount] = this->matrizPageTableLRU[numFilaElegida][numColumnaPinCount] - 1;
     }
 }
 void PageTable::aumentarPinCountDePagina(int numPagina)
@@ -103,14 +103,14 @@ void PageTable::aumentarPinCountDePagina(int numPagina)
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j] == numPagina)
+            if (this->matrizPageTableLRU[i][j] == numPagina)
             {
                 numFilaElegida = i;
             }
         }
         int numColumnaPinCount = 2; // 0,1,2,3
 
-        this->pageTableLRU[numFilaElegida][numColumnaPinCount] = this->pageTableLRU[numFilaElegida][numColumnaPinCount] + 1;
+        this->matrizPageTableLRU[numFilaElegida][numColumnaPinCount] = this->matrizPageTableLRU[numFilaElegida][numColumnaPinCount] + 1;
     }
 }
 
@@ -123,23 +123,23 @@ void PageTable::cambiarDirtyBitDePagina(int numPagina)
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j] == numPagina)
+            if (this->matrizPageTableLRU[i][j] == numPagina)
             {
                 numFilaElegida = i;
             }
         }
         int numColumnaDirtyBit = 1; // 0,1,2,3
-        if (this->pageTableLRU[numFilaElegida][numColumnaDirtyBit] == 1)
+        if (this->matrizPageTableLRU[numFilaElegida][numColumnaDirtyBit] == 1)
         {
             cout << "DirtyBit 1 de pagina numero: " << numPagina << endl;
-            this->pageTableLRU[numFilaElegida][numColumnaDirtyBit] = 0;
-            cout << "DirtyBit cambiado a : " << this->pageTableLRU[numFilaElegida][numColumnaDirtyBit] << endl;
+            this->matrizPageTableLRU[numFilaElegida][numColumnaDirtyBit] = 0;
+            cout << "DirtyBit cambiado a : " << this->matrizPageTableLRU[numFilaElegida][numColumnaDirtyBit] << endl;
         }
         else
         {
             cout << "DirtyBit 0 de pagina numero: " << numPagina << endl;
-            this->pageTableLRU[numFilaElegida][numColumnaDirtyBit] = 1;
-            cout << "DirtyBit cambiado a : " << this->pageTableLRU[numFilaElegida][numColumnaDirtyBit] << endl;
+            this->matrizPageTableLRU[numFilaElegida][numColumnaDirtyBit] = 1;
+            cout << "DirtyBit cambiado a : " << this->matrizPageTableLRU[numFilaElegida][numColumnaDirtyBit] << endl;
         }
     }
 }
@@ -153,14 +153,14 @@ void PageTable::renovarLastUsedDePagina(int numPagina)
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j] == numPagina)
+            if (this->matrizPageTableLRU[i][j] == numPagina)
             {
                 numFilaElegida = i;
             }
         }
         int numColumnaLastUsed = 3; // 0,1,2,3
 
-        this->pageTableLRU[numFilaElegida][numColumnaLastUsed] = 0;
+        this->matrizPageTableLRU[numFilaElegida][numColumnaLastUsed] = 0;
     }
 }
 void PageTable::aumentarLastUsedDePagina(int numPagina)
@@ -172,14 +172,14 @@ void PageTable::aumentarLastUsedDePagina(int numPagina)
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j] == numPagina)
+            if (this->matrizPageTableLRU[i][j] == numPagina)
             {
                 numFilaElegida = i;
             }
         }
         int numColumnaLastUsed = 3; // 0,1,2,3
 
-        this->pageTableLRU[numFilaElegida][numColumnaLastUsed] = this->pageTableLRU[numFilaElegida][numColumnaLastUsed] + 1;
+        this->matrizPageTableLRU[numFilaElegida][numColumnaLastUsed] = this->matrizPageTableLRU[numFilaElegida][numColumnaLastUsed] + 1;
     }
 }
 
@@ -200,7 +200,7 @@ void PageTable::aumentarLastUsedDeTodasLasDemasPaginas(int numFrameAignorar)
             {
                 if (j == 3)
                 {
-                    numIdPaginaAux = this->pageTableLRU[i][0];
+                    numIdPaginaAux = this->matrizPageTableLRU[i][0];
                     this->aumentarLastUsedDePagina(numIdPaginaAux);
                     cout << "frame id: " << i << " - Aumento dado en LastUsed" << endl;
                     cout << "Agregando +1 a Last Used de todos los demás Pages" << endl;
@@ -209,39 +209,39 @@ void PageTable::aumentarLastUsedDeTodasLasDemasPaginas(int numFrameAignorar)
         }
     }
 
-    cout << "Datos de Page Table actualizado" << endl;
+    cout << "aumentarLastUsedDeTodasLasDemasPaginas terminado" << endl;
 }
 
 void PageTable::actualizarInfoDePageTableSolictandoNuevaPagina(int numPaginaActualizar, int numFilaFrameId)
 {
     cout << ".-----------------------actualizarInfoDePageTableSolictandoNuevaPagina() ----------------------" << endl;
     cout << ">>> Actualizando PageTAble" << endl;
-    for (int i = 0; i < this->numColumnasEnPageTable; i++)
+    for (int j = 0; j < this->numColumnasEnPageTable; j++)
     {
-        if (i == 0)
+        if (j == 0)
         {
-            this->pageTableLRU[numFilaFrameId][i] = numPaginaActualizar;
+            this->matrizPageTableLRU[numFilaFrameId][j] = numPaginaActualizar;
             cout << "frame id: " << numFilaFrameId << " - Page id establecida: " << numPaginaActualizar << endl;
         }
-        else if (i == 1)
+        else if (j == 1)
         {
             // Dirty bit:
-            if (this->pageTableLRU[numFilaFrameId][i] == 1)
+            if (this->matrizPageTableLRU[numFilaFrameId][j] == 1)
             {
                 cout << "frame id: " << numFilaFrameId << " - No se cambió el DirtyBit=1" << endl;
             }
             else
             {
-                this->pageTableLRU[numFilaFrameId][i] = 0;
+                this->matrizPageTableLRU[numFilaFrameId][j] = 0;
                 cout << "frame id: " << numFilaFrameId << " - DirtyBit=0" << endl;
             }
         }
-        else if (i == 2)
+        else if (j == 2)
         {
             this->aumentarPinCountDePagina(numPaginaActualizar);
-            cout << "frame id: " << numFilaFrameId << " - Pin Count establecida: " << numPaginaActualizar << endl;
+            cout << "frame id: " << numFilaFrameId << " - Pin Count establecida: " << endl;
         }
-        else if (i == 3)
+        else if (j == 3)
         {
             this->renovarLastUsedDePagina(numPaginaActualizar);
             cout << "frame id: " << numFilaFrameId << " - Aumento dado en LastUsed" << endl;
@@ -272,11 +272,11 @@ void PageTable::aplicarLRU(int numPagina, int numFrameAignorar, bool &eliminarPa
         }
         else
         {
-            if(acumuladorMayorLastUsed < this->pageTableLRU[i][numColLastUsed])
+            if(acumuladorMayorLastUsed < this->matrizPageTableLRU[i][numColLastUsed])
             {
-                acumuladorMayorLastUsed = this->pageTableLRU[i][numColLastUsed];
+                acumuladorMayorLastUsed = this->matrizPageTableLRU[i][numColLastUsed];
                 numFrameDelMayorLastUsed = i;
-                numPagDelMayorLastUsed = this->pageTableLRU[i][numColPageId];
+                numPagDelMayorLastUsed = this->matrizPageTableLRU[i][numColPageId];
             }
             
         }         
@@ -284,11 +284,11 @@ void PageTable::aplicarLRU(int numPagina, int numFrameAignorar, bool &eliminarPa
     }
 
     cout << "Revisando Pin Count" << endl;
-    if (this->pageTableLRU[numFrameDelMayorLastUsed][numColPinCount]==0)
+    if (this->matrizPageTableLRU[numFrameDelMayorLastUsed][numColPinCount]==0)
     {
         cout << "Que bien, pin count libre" << endl;
         cout << "Antes de eliminar, revisaremos dirty bit" << endl;
-        if (this->pageTableLRU[numFrameDelMayorLastUsed][numColDirtyBit]==0)
+        if (this->matrizPageTableLRU[numFrameDelMayorLastUsed][numColDirtyBit]==0)
         {
             cout << "Dirty Bit = 0" << endl;
             cout<<" Solo se eliminará la PAGINA, sin escribir en Disco"<<endl;
@@ -367,7 +367,7 @@ bool PageTable::verificarFrameLlenos()
     int j = 0;
     for (int i = 0; i < this->columnaFrameIdSize; i++)
     {
-        if (this->pageTableLRU[i][j])
+        if (this->matrizPageTableLRU[i][j])
         {
             continue;
         }
@@ -399,7 +399,7 @@ void PageTable::actualizarInformacionDePaginaEliminada(int numPaginaActualizar, 
         int j = 0;
         for (int i = 0; i < this->columnaFrameIdSize; i++)
         {
-            if (this->pageTableLRU[i][j] == numPaginaActualizar)
+            if (this->matrizPageTableLRU[i][j] == numPaginaActualizar)
             {
                 cout<<"&&&&&&& numPaginaActualizar: "<<numPaginaActualizar<<endl;
                 numFilaElegida = i;
@@ -408,7 +408,7 @@ void PageTable::actualizarInformacionDePaginaEliminada(int numPaginaActualizar, 
 
         for (int j = 0; j < this->numColumnasEnPageTable; j++)
         {
-            this->pageTableLRU[numFilaElegida][j] = 0;
+            this->matrizPageTableLRU[numFilaElegida][j] = 0;
         }
         
     }
@@ -422,13 +422,13 @@ void PageTable::actualizarInformacionDePaginaEliminada(int numPaginaActualizar, 
     {
         if (j == 0)
         {
-            this->pageTableLRU[numFilaElegida][j] = nuevaPaginaActualizar;
+            this->matrizPageTableLRU[numFilaElegida][j] = nuevaPaginaActualizar;
             cout << "frame id: " << numFilaElegida << " - Page id establecida: " << nuevaPaginaActualizar << endl;
         }
         else if (j == 1)
         {
             // Dirty bit:
-            this->pageTableLRU[numFilaElegida][j] = 0;
+            this->matrizPageTableLRU[numFilaElegida][j] = 0;
             cout << "frame id: " << numFilaElegida << " - DirtyBit=0" << endl;
         }
         else if (j == 2)

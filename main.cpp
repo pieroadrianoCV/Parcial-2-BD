@@ -26,14 +26,24 @@ void menu()
     int opcion = 0;
     int numPagina;
     //solicitar 1 página
-    while (opcion!=5)
+    while (opcion!=6)
     {
         cout << "Menú Principal Programa Buffer MAnager:" << endl;
         cout << "1. Crear Buffer Pool" << endl;
         cout << "2. Obtener Una Página" << endl;
+        //RELACIONADO CON OPCION 4
+        /*Falta leer correctamente o dirgir correctamente al numero de FrameId en el que se insertara)*/
+        /*convertir registros en txt a Registros Fijos (primero) - Variable
+        describir función y autor (comentarios)*/
+        /*(dentro de obtener página Se preguntará al usuario
+        si leerá(L) o escribirá(W). y a la vez este aumentará pin count de dicha página
+        describir función y autor (comentarios)*/
         cout << "3. Mostrar Page Table" << endl;
         cout << "4. Mostrar Una Página" << endl;
-        cout << "5. SALIR del programa principal" << endl;
+        /*Falta leer correctamente o dirigir correctamente al numero de FrameId en el que se insertara)*/
+        cout<<"5. Liberar uso de Página"<<endl;
+        //Se deberá tener una opción para liberar uso de página, para descontar Pin Counts.- describir función y autor (comentarios)
+        cout << "6. SALIR del programa principal" << endl;
         cout << ">>>Ingrese el numero de opcion" << endl;
         cin >> opcion;
 
@@ -56,7 +66,11 @@ void menu()
             cin>>numPagina;
             bufferManagerPrincipal.bufferPool.mostrarFramePagina(numPagina);
             break;
-
+        case 5:
+            cout<<"Ingrese el numero de la pagina a liberar"<<endl;
+            cin>>numPagina;
+            //funcion
+            break;
         default:
             break;
         }

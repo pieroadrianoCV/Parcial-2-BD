@@ -27,7 +27,7 @@ public:
     
     int numColumnasEnPageTable=4;//aparte de frameID
 
-    vector<vector<int>> pageTableLRU;
+    vector<vector<int>> matrizPageTableLRU;
 public:
     PageTable(/* args */);
     ~PageTable();

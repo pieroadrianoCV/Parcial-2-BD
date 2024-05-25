@@ -6,7 +6,7 @@ class Frame
 {
 public:
     Pagina paginaEnFrame;
-    int limiteBytesCapacidad;
+    int capacidadBytesDeFrame;
 public:
     Frame();
     ~Frame();
