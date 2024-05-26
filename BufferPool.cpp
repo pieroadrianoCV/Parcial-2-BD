@@ -17,6 +17,6 @@ void BufferPool::agregarNuevaPaginaBufferPool(int numFrame, int numPagina)
 void BufferPool::mostrarFramePagina(int numPagina)
 {
     cout<<"-------------------------mostrarFramePagina()--------------------------"<<endl;
-    /*FALTA CORREGIR: error de lectura de pagina en vector FRAMES ()*/
+    /*FALTA CORREGIR: error de lectura de pagina en vector FRAMES ()*/ //corregido 
     this->vectorFramesBufferPool[numPagina-1].paginaEnFrame.mostrarContenidoDePagina();
 }
