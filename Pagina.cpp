@@ -21,7 +21,7 @@ void Pagina::recogerRegistros(int numPagina)
     string numPaginaString = to_string(numPagina);
     string nameBloque = "Bloque";
     /* Por si acaso si no funciona es ../, de caso contrario ./ */
-    string rutaCompleta = "../Bloques/" + nameBloque+numPaginaString + ".txt";
+    string rutaCompleta = "./Bloques/" + nameBloque+numPaginaString + ".txt";
     cout << "Intentando abrir el archivo en: " << rutaCompleta << endl;
     ifstream fileReadBloques(rutaCompleta);
 
@@ -71,7 +71,7 @@ void Pagina::recogerRegistros(int numPagina)
             }
             this->vectorRegistrosEnPagina.push_back(linea_registro);
         }
-        cout<<"Recogida de datos terminado"<<endl;
+        cout << "Recogida de datos terminado" << endl;
         
     }
     
@@ -87,6 +87,64 @@ void Pagina::mostrarContenidoDePagina()
     
 }
 
+void Pagina::leerOescribirEnPagina(int peso)  //Funcion Piero
+{
+    int filaAencontrar;
+    string registroNuevo;
+    string cadenaFinal = "";
+    cout << "-------------------PAgina: leerOescribirEnPagina()----------------------" << endl;
+    cout << "Fila a editar: ";
+    cin >> filaAencontrar;
+    cin.ignore();
+
+    string& registro = this->vectorRegistrosEnPagina[filaAencontrar];
+    cout << "Registro actual: " << registro << endl;
+
+    vector<string> valoresRegistroNuevo;
+    stringstream ss(registro);
+    string valor;
+
+    cout << "Registro nuevo: ";
+
+    getline(cin, registroNuevo);
+
+    stringstream ssNuevo(registroNuevo);
+
+    while (getline(ssNuevo, valor, ',')) {
+        valoresRegistroNuevo.push_back(valor);
+    }
+
+    for (int i = 0; i < valoresRegistroNuevo.size();++i)
+    {
+        if (isNumber(valoresRegistroNuevo[i]) == true)
+        {
+            cadenaFinal += valoresRegistroNuevo[i] + ',';
+        }
+        
+        if (isNumber(valoresRegistroNuevo[i]) == false)
+        {
+            cadenaFinal += valoresRegistroNuevo[i];
+            int pesoValor = valoresRegistroNuevo[i].size();
+            
+            do {
+                cadenaFinal += " ";
+                pesoValor += 1;
+            }
+            while (pesoValor < peso);
+            
+            if (i < valoresRegistroNuevo.size() - 1)
+            {
+                cadenaFinal += ',';
+            }
+            
+        }
+
+    }
+    this->vectorRegistrosEnPagina[filaAencontrar] = cadenaFinal;
+    cout << "Guardado" << endl;
+    cout << "------------------------------------------------------------------------" << endl;
+    
+}
 
 bool Pagina::verificarPaginaVacia()
 {

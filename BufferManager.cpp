@@ -84,9 +84,31 @@ void BufferManager::obtenerUnaPagina(int numPagina)
         cout<<"Ingresando Página al BufferPoll dentro vector de Frames...."<<endl;
         this->bufferPool.agregarNuevaPaginaBufferPool(numFrameDePagina,numPagina);
         this->bufferPool.mostrarFramePagina(numPagina);
-
     }
+    /*
+    char accionEnPagina;
+    bool accionValida = false;
+    while (!accionValida) {
+        cout << "Leer (L/l) o Escribir (W/w) en la pagina?" << endl;
+        cin >> accionEnPagina;
 
+        if (accionEnPagina == 'L' || accionEnPagina == 'l') {
+            cout << "Lectura de Pagina" << endl;
+            this->pageTable.aumentarPinCountDePagina(numPagina);
+            accionValida = true;
+        }
+        else if (accionEnPagina == 'W' || accionEnPagina == 'w') {
+            cout << "Escritura de Pagina" << endl;
+            this->pagina.leerOescribirEnPagina(50);
+            this->pageTable.cambiarDirtyBitDePagina(numPagina);
+            accionValida = true;
+        }
+        else {
+            cout << "No valido" << endl;
+        }
+    }
+    cout << "Pin Count de la pagina " << numPagina << " incrementado" << endl;
+    */
 }
 
 /*
