@@ -40,7 +40,7 @@ void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
     
 }
 
-
+/* Funcion posible a modificar para modificar Pagina o no (W - L) - Josue */
 void BufferManager::obtenerUnaPagina(int numPagina)
 {
     cout<<"----------------obtenerUnaPagina()-------------------"<<endl;

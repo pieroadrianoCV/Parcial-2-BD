@@ -94,6 +94,8 @@ void PageTable::descontarPinCountApagina(int numPagina)
         this->matrizPageTableLRU[numFilaElegida][numColumnaPinCount] = this->matrizPageTableLRU[numFilaElegida][numColumnaPinCount] - 1;
     }
 }
+
+/* Funcion a modificar, tiene que ir de la mano con obtenerUnaPagina de BuferrManager - Josue */
 void PageTable::aumentarPinCountDePagina(int numPagina)
 {
     cout << "-------------------aumentarPinCountDePagina()-----------.------" << endl;
