@@ -33,7 +33,7 @@ void BufferManager::establecerLimiteDeFrames(int pesoBytesBLoque)
 {
     this->bufferPool.capacidadDeCadaFrame = pesoBytesBLoque;
 
-    for (int i = 0; i < this->bufferPool.vectorFramesBufferPool.size(); i++)
+    for (size_t i = 0; i < this->bufferPool.vectorFramesBufferPool.size(); i++)
     {
         this->bufferPool.vectorFramesBufferPool[i].capacidadBytesDeFrame = pesoBytesBLoque;
     }

@@ -36,6 +36,7 @@ void Pagina::recogerRegistros(int numPagina)
         string valor;
         //mientras haya lineas
         this->vectorRegistrosEnPagina.clear();
+
         cout << "tamanio string: " << endl;
         int tamanio;
         cin >> tamanio;
@@ -55,7 +56,7 @@ void Pagina::recogerRegistros(int numPagina)
                         
                         do {
                             valor += " ";
-                            peso++;
+                            peso+=1;
                         }
                         while (peso < tamanio);
                         linea_registro += valor + ',';
