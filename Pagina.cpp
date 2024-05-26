@@ -4,6 +4,7 @@ Pagina::Pagina(/* args */){}
 
 Pagina::~Pagina(){}
 
+int tamanioString = 0;
 /* Funcion hecha por Josue*/
 bool isNumber(const std::string &s)
 {
@@ -39,8 +40,8 @@ void Pagina::recogerRegistros(int numPagina)
         this->vectorRegistrosEnPagina.clear();
 
         cout << "tamanio string: " << endl;
-        int tamanio;
-        cin >> tamanio;
+
+        cin >> tamanioString;
         //string linea_registro = " ";
         while (getline(fileReadBloques,lineaDeRegistroAux))
         {
@@ -62,7 +63,7 @@ void Pagina::recogerRegistros(int numPagina)
                     continue;
                 }
                 else {
-                    while (peso < tamanio) {
+                    while (peso < tamanioString) {
                         valor += ' ';
                         peso += 1;
                     }
@@ -77,7 +78,7 @@ void Pagina::recogerRegistros(int numPagina)
     
 }
 
-void Pagina::mostrarContenidoDePagina()
+void Pagina::mostrarContenidoDePagina()//funcion Piero
 {
     cout << "-------------------PAgina: mostrarContenidoDePagina()-------------------" << endl;
     for (size_t i =0 ; i < this->vectorRegistrosEnPagina.size(); i++) {
@@ -87,7 +88,7 @@ void Pagina::mostrarContenidoDePagina()
     
 }
 
-void Pagina::leerOescribirEnPagina(int peso)  //Funcion Piero
+void Pagina::leerOescribirEnPagina()  //Funcion Piero
 {
     int filaAencontrar;
     string registroNuevo;
@@ -130,7 +131,7 @@ void Pagina::leerOescribirEnPagina(int peso)  //Funcion Piero
                 cadenaFinal += " ";
                 pesoValor += 1;
             }
-            while (pesoValor < peso);
+            while (pesoValor < tamanioString);
             
             if (i < valoresRegistroNuevo.size() - 1)
             {

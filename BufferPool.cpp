@@ -24,6 +24,6 @@ void BufferPool::mostrarFramePagina(int numPagina)
 void BufferPool::lecturaOescrituraPagina(int numPagina)
 {
     cout<<"-------------------------lecturaOescrituraPagina()----------------------"<<endl;
-    this->vectorFramesBufferPool[numPagina-1].paginaEnFrame.leerOescribirEnPagina(50);
+    this->vectorFramesBufferPool[numPagina-1].paginaEnFrame.leerOescribirEnPagina();
     
 }
