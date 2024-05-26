@@ -4,6 +4,7 @@ Pagina::Pagina(/* args */){}
 
 Pagina::~Pagina(){}
 
+/* Funcion hecha por Josue*/
 bool isNumber(const std::string &s)
 {
     for (char const &ch : s)
@@ -14,6 +15,7 @@ bool isNumber(const std::string &s)
     return true;
 }
 
+/* Funcion modificada por Piero*/
 void Pagina::recogerRegistros(int numPagina)
 {
     string numPaginaString = to_string(numPagina);
@@ -31,7 +33,6 @@ void Pagina::recogerRegistros(int numPagina)
     else
     {
         cout << "EXITO t5656: SI se pudo abrir" + rutaCompleta << endl;
-//PIERO
         string lineaDeRegistroAux;
         string valor;
         //mientras haya lineas
@@ -40,28 +41,33 @@ void Pagina::recogerRegistros(int numPagina)
         cout << "tamanio string: " << endl;
         int tamanio;
         cin >> tamanio;
-        string linea_registro = " ";
+        //string linea_registro = " ";
         while (getline(fileReadBloques,lineaDeRegistroAux))
         {
             //this->vectorRegistrosEnPagina.push_back(lineaDeRegistroAux);
+            string linea_registro;
             stringstream ss(lineaDeRegistroAux);
+            bool primerValor = true;
             while (getline(ss,valor,','))
             {
-                    int peso = valor.size();
-                    if (isNumber(valor)) {
-                        linea_registro += valor + ',';
-                        continue;
+                if (!primerValor) {
+                    linea_registro += ',';
+                }
+                else {
+                    primerValor = false;
+                }
+                int peso = valor.size();
+                if (isNumber(valor)) {
+                    linea_registro += valor;
+                    continue;
+                }
+                else {
+                    while (peso < tamanio) {
+                        valor += ' ';
+                        peso += 1;
                     }
-                    else {
-                        
-                        do {
-                            valor += " ";
-                            peso+=1;
-                        }
-                        while (peso < tamanio);
-                        linea_registro += valor + ',';
-                        break;
-                    }
+                    linea_registro += valor;
+                }
             }
             this->vectorRegistrosEnPagina.push_back(linea_registro);
         }
