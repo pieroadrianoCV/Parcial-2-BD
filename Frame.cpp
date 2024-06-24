@@ -1,14 +1,9 @@
 #include "./Frame.h"
 
-Frame::Frame(/* args */)
-{
-}
+Frame::Frame() {}
 
-Frame::~Frame()
-{
-}
+Frame::~Frame() {}
 
-void Frame::leerDatosEnPaginaDeFrame(int numPagina)
-{
+void Frame::leerDatosEnPaginaDeFrame(int numPagina) {
     this->paginaEnFrame.recogerRegistros(numPagina);
 }
